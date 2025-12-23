@@ -4,7 +4,7 @@ import { CheckCircle2, Circle, Plane, Factory, Truck, Building2, ShieldCheck, Sp
 const journeySteps = [
   {
     icon: CheckCircle2,
-    title: "Collected by Eco-Stream",
+    title: "Collected by UCOnnect",
     description: "Your UCO was picked up from Guardhouse A, Block 7",
     date: "Nov 25, 2024 - 10:42 AM",
     status: "completed",
