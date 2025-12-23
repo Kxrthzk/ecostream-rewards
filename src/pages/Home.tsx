@@ -20,7 +20,7 @@ const Home = () => {
                 </div>
               </div>
               <div>
-                <h1 className="font-display font-bold text-xl text-foreground">Eco-Stream</h1>
+                <h1 className="font-display font-bold text-xl text-foreground">UCOnnect</h1>
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
                   Puchong, Malaysia
