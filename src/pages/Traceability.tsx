@@ -1,5 +1,5 @@
 import { MobileLayout } from "@/components/layout/MobileLayout";
-import { CheckCircle2, Circle, Plane, Factory, Truck, Building2, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Circle, Plane, Factory, Truck, Building2, ShieldCheck, Sparkles, Zap } from "lucide-react";
 
 const journeySteps = [
   {
@@ -50,13 +50,24 @@ const Traceability = () => {
         </header>
 
         <main className="px-5 space-y-6 pb-6">
-          {/* Certification Badge */}
-          <div className="bg-card rounded-2xl p-4 border border-border flex items-center gap-4 animate-slide-up">
-            <div className="w-14 h-14 rounded-xl bg-secondary-light flex items-center justify-center flex-shrink-0">
-              <ShieldCheck className="w-7 h-7 text-secondary" />
+          {/* Certification Badge - Premium */}
+          <div className="group relative overflow-hidden bg-card rounded-2xl p-4 border border-secondary/30 flex items-center gap-4 animate-slide-up transition-all duration-300 hover:border-secondary/50 hover:shadow-glow-secondary cursor-pointer">
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            
+            <div className="relative w-16 h-16 rounded-xl bg-gradient-to-br from-secondary-light to-secondary/20 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-300">
+              <ShieldCheck className="w-8 h-8 text-secondary" />
+              <div className="absolute -top-1 -right-1">
+                <Sparkles className="w-4 h-4 text-accent animate-pulse" />
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-foreground">ISCC Certified Supply Chain</p>
+            <div className="relative z-10">
+              <p className="font-semibold text-foreground flex items-center gap-2">
+                ISCC Certified Supply Chain
+                <span className="flex items-center gap-0.5 text-[10px] font-semibold text-secondary bg-secondary-light px-1.5 py-0.5 rounded-full">
+                  <Zap className="w-2.5 h-2.5" />
+                  VERIFIED
+                </span>
+              </p>
               <p className="text-xs text-muted-foreground">Your oil never becomes "gutter oil" - guaranteed</p>
             </div>
           </div>
@@ -73,31 +84,44 @@ const Traceability = () => {
                                      step.status === "current" ? step.icon : Circle;
                   
                   return (
-                    <div key={index} className="relative flex gap-4 pb-6 last:pb-0">
+                    <div key={index} className="relative flex gap-4 pb-6 last:pb-0 group cursor-pointer">
                       {/* Timeline line */}
                       {!isLast && (
-                        <div className={`absolute left-5 top-10 w-0.5 h-[calc(100%-2.5rem)] ${
-                          step.status === "completed" ? "bg-secondary" : "bg-border"
+                        <div className={`absolute left-5 top-12 w-0.5 h-[calc(100%-3rem)] transition-all duration-500 ${
+                          step.status === "completed" 
+                            ? "bg-gradient-to-b from-secondary to-secondary/50" 
+                            : step.status === "current"
+                            ? "bg-gradient-to-b from-primary to-border"
+                            : "bg-border"
                         }`} />
                       )}
                       
                       {/* Icon */}
-                      <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                      <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 ${
                         step.status === "completed" 
-                          ? "bg-secondary text-secondary-foreground" 
+                          ? "bg-gradient-to-br from-secondary to-secondary/80 text-secondary-foreground shadow-teal" 
                           : step.status === "current"
-                          ? "bg-primary text-primary-foreground animate-pulse-soft"
+                          ? "bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-button animate-pulse-soft"
                           : "bg-muted text-muted-foreground"
                       }`}>
                         <StatusIcon className="w-5 h-5" />
+                        {step.status === "current" && (
+                          <div className="absolute inset-0 rounded-full bg-primary/30 animate-pulse-ring" />
+                        )}
                       </div>
                       
                       {/* Content */}
                       <div className="flex-1 pt-1">
-                        <p className={`font-semibold text-sm ${
+                        <p className={`font-semibold text-sm transition-colors ${
                           step.status === "pending" ? "text-muted-foreground" : "text-foreground"
                         }`}>
                           {step.title}
+                          {step.status === "current" && (
+                            <span className="ml-2 inline-flex items-center gap-0.5 text-[10px] font-semibold text-primary bg-primary-light px-1.5 py-0.5 rounded-full">
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                              IN PROGRESS
+                            </span>
+                          )}
                         </p>
                         <p className="text-xs text-muted-foreground mt-1">{step.description}</p>
                         <p className={`text-xs mt-2 ${
@@ -113,30 +137,48 @@ const Traceability = () => {
             </div>
           </div>
 
-          {/* SAF Info Card */}
-          <div className="relative overflow-hidden rounded-2xl gradient-ocean p-5 text-primary-foreground animate-slide-up" style={{ animationDelay: "200ms" }}>
-            <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+          {/* SAF Info Card - Premium */}
+          <div className="relative overflow-hidden rounded-2xl gradient-ocean p-5 text-primary-foreground animate-slide-up group" style={{ animationDelay: "200ms" }}>
+            {/* Animated orbs */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute w-24 h-24 bg-white/10 rounded-full -top-10 -right-10 animate-float" />
+              <div className="absolute w-16 h-16 bg-white/5 rounded-full bottom-0 left-1/4 animate-float" style={{ animationDelay: "1s" }} />
+            </div>
+            
+            {/* Shimmer */}
+            <div className="shimmer absolute inset-0 rounded-2xl" />
             
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-3">
-                <Plane className="w-6 h-6" />
-                <h4 className="font-display font-semibold">What is SAF?</h4>
+                <div className="w-12 h-12 rounded-xl glass flex items-center justify-center">
+                  <Plane className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-display font-semibold">What is SAF?</h4>
+                  <p className="text-xs opacity-80">Sustainable Aviation Fuel</p>
+                </div>
               </div>
               <p className="text-sm opacity-90 leading-relaxed">
-                Sustainable Aviation Fuel (SAF) made from your used cooking oil reduces aviation carbon emissions by up to <span className="font-bold">80%</span> compared to conventional jet fuel.
+                Your used cooking oil is transformed into jet fuel that reduces aviation carbon emissions by up to <span className="font-bold text-accent">80%</span> compared to conventional fuel.
               </p>
             </div>
           </div>
 
-          {/* Trust Stats */}
+          {/* Trust Stats - Premium */}
           <div className="grid grid-cols-2 gap-3 animate-slide-up" style={{ animationDelay: "300ms" }}>
-            <div className="bg-card rounded-2xl p-4 border border-border text-center">
-              <p className="stat-number text-2xl text-secondary mb-1">100%</p>
-              <p className="text-xs text-muted-foreground">Traceable Chain</p>
+            <div className="group relative overflow-hidden bg-card rounded-2xl p-4 border border-secondary/30 text-center transition-all duration-300 hover:shadow-glow-secondary hover:scale-[1.02] cursor-pointer">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative z-10">
+                <p className="stat-number text-3xl text-gradient mb-1">100%</p>
+                <p className="text-xs text-muted-foreground">Traceable Chain</p>
+              </div>
             </div>
-            <div className="bg-card rounded-2xl p-4 border border-border text-center">
-              <p className="stat-number text-2xl text-primary mb-1">0%</p>
-              <p className="text-xs text-muted-foreground">Gutter Oil Risk</p>
+            <div className="group relative overflow-hidden bg-card rounded-2xl p-4 border border-primary/30 text-center transition-all duration-300 hover:shadow-glow-primary hover:scale-[1.02] cursor-pointer">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative z-10">
+                <p className="stat-number text-3xl text-foreground mb-1">0%</p>
+                <p className="text-xs text-muted-foreground">Gutter Oil Risk</p>
+              </div>
             </div>
           </div>
         </main>
