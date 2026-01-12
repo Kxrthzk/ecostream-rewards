@@ -1,13 +1,19 @@
 import { MobileLayout } from "@/components/layout/MobileLayout";
 import { Button } from "@/components/ui/button";
-import { ArrowDownRight, ArrowUpRight, Wallet as WalletIcon, ExternalLink, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Wallet as WalletIcon, ExternalLink, Sparkles, TrendingUp, Gift, ShoppingBag } from "lucide-react";
 
 const transactions = [
-  { id: 1, date: "Nov 25, 2024", type: "credit", description: "Guardhouse Drop-off (1.4kg)", amount: "2.80", isNew: true },
-  { id: 2, date: "Nov 18, 2024", type: "credit", description: "Guardhouse Drop-off (0.8kg)", amount: "1.60", isNew: false },
-  { id: 3, date: "Nov 10, 2024", type: "credit", description: "Guardhouse Drop-off (2.1kg)", amount: "4.20", isNew: false },
-  { id: 4, date: "Nov 5, 2024", type: "debit", description: "Cash Out to TnG", amount: "10.00", isNew: false },
-  { id: 5, date: "Oct 28, 2024", type: "credit", description: "Guardhouse Drop-off (1.9kg)", amount: "3.80", isNew: false },
+  { id: 1, date: "Nov 25, 2024", type: "credit", description: "Guardhouse A Drop-off (1.4kg)", amount: "2.80", rate: "RM 2.00/kg", isNew: true },
+  { id: 2, date: "Nov 18, 2024", type: "credit", description: "Guardhouse A Drop-off (0.8kg)", amount: "1.60", rate: "RM 2.00/kg", isNew: false },
+  { id: 3, date: "Nov 10, 2024", type: "credit", description: "Guardhouse A Drop-off (2.1kg)", amount: "4.20", rate: "RM 2.00/kg", isNew: false },
+  { id: 4, date: "Nov 5, 2024", type: "debit", description: "Cash Out to TnG eWallet", amount: "10.00", isNew: false },
+  { id: 5, date: "Oct 28, 2024", type: "credit", description: "Guardhouse A Drop-off (1.9kg)", amount: "3.80", rate: "RM 2.00/kg", isNew: false },
+];
+
+const greenRewards = [
+  { name: "The Body Shop", discount: "15% off", category: "Beauty" },
+  { name: "SolarHome MY", discount: "RM 200 off", category: "Solar" },
+  { name: "EcoDetergent", discount: "Buy 1 Free 1", category: "Home" },
 ];
 
 const Wallet = () => {
@@ -17,7 +23,7 @@ const Wallet = () => {
         {/* Header */}
         <header className="px-5 pt-6 pb-4">
           <h1 className="font-display font-bold text-2xl text-foreground">My Wallet</h1>
-          <p className="text-sm text-muted-foreground">Manage your eco-rewards</p>
+          <p className="text-sm text-muted-foreground">Earn & spend your eco-rewards</p>
         </header>
 
         <main className="px-5 space-y-6 pb-6">
@@ -67,6 +73,7 @@ const Wallet = () => {
               <div className="relative z-10">
                 <p className="text-xs text-muted-foreground mb-1">Total Earned</p>
                 <p className="stat-number text-xl text-gradient">RM 42.40</p>
+                <p className="text-[10px] text-muted-foreground mt-1">21.2 kg recycled</p>
               </div>
             </div>
             <div className="group relative overflow-hidden bg-gradient-to-br from-primary-light to-primary/10 rounded-2xl p-4 border border-primary/30 text-center transition-all duration-300 hover:shadow-glow-primary hover:scale-[1.02] cursor-pointer">
@@ -74,8 +81,37 @@ const Wallet = () => {
               <div className="relative z-10">
                 <p className="text-xs text-muted-foreground mb-1">Cash Outs</p>
                 <p className="stat-number text-xl text-foreground">RM 24.40</p>
+                <p className="text-[10px] text-muted-foreground mt-1">to TnG eWallet</p>
               </div>
             </div>
+          </div>
+
+          {/* Green Rewards Marketplace */}
+          <div className="space-y-3 animate-slide-up" style={{ animationDelay: "150ms" }}>
+            <div className="flex items-center justify-between">
+              <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
+                <Gift className="w-4 h-4 text-accent" />
+                Green Rewards
+              </h3>
+              <span className="text-[10px] font-medium text-accent bg-accent-light px-2 py-1 rounded-full">NEW</span>
+            </div>
+            
+            <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
+              {greenRewards.map((reward, index) => (
+                <div
+                  key={index}
+                  className="group flex-shrink-0 w-32 bg-card rounded-xl p-3 border border-border hover:border-accent/30 hover:shadow-card-hover transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-light to-accent/20 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <ShoppingBag className="w-4 h-4 text-accent" />
+                  </div>
+                  <p className="font-medium text-xs text-foreground truncate">{reward.name}</p>
+                  <p className="text-[10px] text-accent font-semibold">{reward.discount}</p>
+                  <p className="text-[10px] text-muted-foreground">{reward.category}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-[10px] text-muted-foreground text-center">Spend your balance on sustainable brands</p>
           </div>
 
           {/* Transaction History */}
@@ -117,7 +153,12 @@ const Wallet = () => {
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-muted-foreground">{tx.date}</p>
+                      <div className="flex items-center gap-2">
+                        <p className="text-xs text-muted-foreground">{tx.date}</p>
+                        {tx.rate && (
+                          <span className="text-[10px] text-muted-foreground">• {tx.rate}</span>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <p className={`relative z-10 stat-number text-lg ${
