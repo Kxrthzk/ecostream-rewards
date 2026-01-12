@@ -1,4 +1,4 @@
-import { QrCode, Package, Sparkles, ArrowRight } from "lucide-react";
+import { QrCode, Package, Sparkles, ArrowRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const ActionButtons = () => {
@@ -21,11 +21,18 @@ export const ActionButtons = () => {
             <QrCode className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
             <Sparkles className="absolute -top-1 -right-1 w-3 h-3 text-accent animate-pulse" />
           </div>
-          <span className="font-semibold">Scan Drop-off at Guardhouse</span>
+          <span className="font-semibold">Drop & Earn at Guardhouse</span>
         </div>
         
         <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 ml-auto" />
       </Button>
+
+      {/* Guardhouse Hub Info */}
+      <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+        <MapPin className="w-3.5 h-3.5 text-secondary" />
+        <span>Nearest: <span className="font-medium text-foreground">Guardhouse A, Block 7</span></span>
+        <span className="text-secondary">• 50m away</span>
+      </div>
       
       {/* Secondary CTA - Starter kit */}
       <Button 
@@ -37,7 +44,7 @@ export const ActionButtons = () => {
           <Package className="w-5 h-5 text-secondary" />
         </div>
         <div className="flex-1 text-left">
-          <span className="font-medium text-foreground">Request Empty Starter Kit</span>
+          <span className="font-medium text-foreground">Request Starter Kit</span>
           <p className="text-xs text-muted-foreground">Free 1.5L container</p>
         </div>
         <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-secondary group-hover:translate-x-1 transition-all duration-300" />

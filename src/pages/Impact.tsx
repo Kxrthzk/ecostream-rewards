@@ -1,5 +1,5 @@
 import { MobileLayout } from "@/components/layout/MobileLayout";
-import { Shield, Droplets, Leaf, Award, TrendingUp, Sparkles, Star, Crown } from "lucide-react";
+import { Shield, Droplets, Leaf, Award, TrendingUp, Sparkles, Star, Crown, MapPin, Building2, FileText } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 const Impact = () => {
@@ -9,7 +9,7 @@ const Impact = () => {
         {/* Header */}
         <header className="px-5 pt-6 pb-4">
           <h1 className="font-display font-bold text-2xl text-foreground">Your Impact</h1>
-          <p className="text-sm text-muted-foreground">Track your contribution to planetary health</p>
+          <p className="text-sm text-muted-foreground">Flood prevention & planetary health</p>
         </header>
 
         <main className="px-5 space-y-6 pb-6">
@@ -68,7 +68,7 @@ const Impact = () => {
                   <Droplets className="w-6 h-6 text-primary" />
                 </div>
                 <p className="stat-number text-2xl text-foreground mb-1">20.0 L</p>
-                <p className="text-xs text-muted-foreground">Oil Diverted from Drains</p>
+                <p className="text-xs text-muted-foreground">Diverted from Drains</p>
               </div>
             </div>
             
@@ -81,6 +81,30 @@ const Impact = () => {
                 <p className="stat-number text-2xl text-foreground mb-1">12.4 kg</p>
                 <p className="text-xs text-muted-foreground">CO₂ Emissions Saved</p>
               </div>
+            </div>
+          </div>
+
+          {/* Grease Heatmap Preview - B2G Value */}
+          <div className="group relative overflow-hidden bg-gradient-to-br from-primary-light to-primary/5 rounded-2xl p-4 border border-primary/20 animate-slide-up transition-all duration-300 hover:border-primary/40" style={{ animationDelay: "150ms" }}>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-sm text-foreground flex items-center gap-2">
+                  Grease Heatmap
+                  <span className="text-[10px] font-medium text-primary bg-primary-light px-1.5 py-0.5 rounded-full">LIVE</span>
+                </p>
+                <p className="text-xs text-muted-foreground">Your data helps prevent drain blockages</p>
+              </div>
+            </div>
+            <div className="bg-card/50 rounded-xl p-3 border border-border">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-muted-foreground">Your condo recycling rate</span>
+                <span className="font-bold text-secondary">78%</span>
+              </div>
+              <Progress value={78} className="h-2 mt-2" />
+              <p className="text-[10px] text-muted-foreground mt-2">Data shared with MBSJ for flood prevention planning</p>
             </div>
           </div>
 
@@ -114,57 +138,47 @@ const Impact = () => {
             </p>
           </div>
 
-          {/* Monthly Breakdown */}
-          <div className="space-y-3 animate-slide-up" style={{ animationDelay: "300ms" }}>
-            <h3 className="font-display font-semibold text-foreground">Monthly Impact</h3>
-            
-            <div className="bg-card rounded-2xl p-5 border border-border space-y-4">
-              {[
-                { month: "November 2024", liters: "4.2L", score: "+89", isNew: true },
-                { month: "October 2024", liters: "5.8L", score: "+112", isNew: false },
-                { month: "September 2024", liters: "3.1L", score: "+67", isNew: false },
-              ].map((item, index) => (
-                <div key={index} className="group flex items-center justify-between py-2 border-b border-border last:border-0 last:pb-0 hover:bg-muted/30 -mx-2 px-2 rounded-lg transition-colors cursor-pointer">
-                  <div className="flex items-center gap-2">
-                    <div>
-                      <p className="font-medium text-sm text-foreground flex items-center gap-2">
-                        {item.month}
-                        {item.isNew && (
-                          <span className="flex items-center gap-0.5 text-[10px] font-semibold text-secondary bg-secondary-light px-1.5 py-0.5 rounded-full">
-                            CURRENT
-                          </span>
-                        )}
-                      </p>
-                      <p className="text-xs text-muted-foreground">{item.liters} recycled</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="stat-number text-sm text-gradient">{item.score}</p>
-                    <p className="text-xs text-muted-foreground">points</p>
-                  </div>
-                </div>
-              ))}
+          {/* ESG Report Card - B2B Value */}
+          <div className="group relative overflow-hidden bg-card rounded-2xl p-4 border border-secondary/20 animate-slide-up transition-all duration-300 hover:border-secondary/40" style={{ animationDelay: "250ms" }}>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary-light to-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <FileText className="w-6 h-6 text-secondary" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-sm text-foreground">Your Green Building Report</p>
+                <p className="text-xs text-muted-foreground">ESG data for IOI Puchong Jaya</p>
+              </div>
+              <div className="text-right">
+                <p className="stat-number text-lg text-gradient">A+</p>
+                <p className="text-[10px] text-muted-foreground">ESG Score</p>
+              </div>
             </div>
           </div>
 
           {/* Community Impact */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-primary-light to-primary/10 rounded-2xl p-5 border border-primary/30 animate-slide-up group" style={{ animationDelay: "400ms" }}>
+          <div className="relative overflow-hidden bg-gradient-to-br from-primary-light to-primary/10 rounded-2xl p-5 border border-primary/30 animate-slide-up group" style={{ animationDelay: "300ms" }}>
             <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 rounded-full -translate-y-1/2 translate-x-1/2" />
             
             <div className="relative z-10">
               <h4 className="font-display font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-primary" />
                 Puchong Community
                 <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
               </h4>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="stat-number text-xl text-gradient">2,847 L</p>
-                  <p className="text-xs text-muted-foreground">Total collected this month</p>
+                  <p className="text-xs text-muted-foreground">Collected this month</p>
                 </div>
                 <div>
                   <p className="stat-number text-xl text-foreground">1,243</p>
-                  <p className="text-xs text-muted-foreground">Active eco-warriors</p>
+                  <p className="text-xs text-muted-foreground">Active households</p>
                 </div>
+              </div>
+              <div className="mt-4 pt-3 border-t border-primary/20">
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-semibold text-foreground">47 condos</span> • <span className="font-semibold text-foreground">12 guardhouse hubs</span>
+                </p>
               </div>
             </div>
           </div>
