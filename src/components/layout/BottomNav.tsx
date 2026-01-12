@@ -1,10 +1,11 @@
-import { Home, Wallet, BarChart3, Route } from "lucide-react";
+import { Home, Wallet, BarChart3, Route, Gift } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { icon: Home, label: "Home", path: "/" },
   { icon: Wallet, label: "Wallet", path: "/wallet" },
+  { icon: Gift, label: "Rewards", path: "/rewards" },
   { icon: BarChart3, label: "Impact", path: "/impact" },
   { icon: Route, label: "Journey", path: "/traceability" },
 ];
