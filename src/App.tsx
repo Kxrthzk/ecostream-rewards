@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Wallet from "./pages/Wallet";
 import Impact from "./pages/Impact";
 import Traceability from "./pages/Traceability";
+import Rewards from "./pages/Rewards";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/impact" element={<Impact />} />
           <Route path="/traceability" element={<Traceability />} />
+          <Route path="/rewards" element={<Rewards />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
